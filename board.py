@@ -18,6 +18,14 @@ class Board:
             board += line + "\n"
         return board
     
+    def board_is_full(self):
+        checker = True
+        for inner in self.arr:
+            for el in inner:
+                if el == '.':
+                    checker = False
+        return checker
+    
     def replace_element(self, symbol, row, column):
         '''Replaces an element on the masterboard'''
 
@@ -29,17 +37,24 @@ class Board:
     def check_win(self)->bool:
         '''Checks if there is a win!'''
         arr = self.arr
-        if arr[0][0] == arr[0][1] == arr[0][2] != '.' or \
-            arr[1][0] == arr[1][1] == arr[1][2] != '.' or \
-            arr[2][0] == arr[2][1] == arr[2][2] != '.' or \
-            arr[0][0] == arr[1][0] == arr[2][0] != '.' or \
-            arr[0][1] == arr[1][1] == arr[2][1] != '.' or \
-            arr[0][2] == arr[1][2] == arr[2][2] != '.' or \
-            arr[0][0] == arr[1][1] == arr[2][2] != '.' or \
-            arr[0][2] == arr[1][1] == arr[2][0] != '.':
-                return True
+        if arr[0][0] == arr[0][1] == arr[0][2] != '.':
+            return arr[0][0]
+        elif arr[1][0] == arr[1][1] == arr[1][2] != '.':
+            return arr[1][0]
+        elif arr[2][0] == arr[2][1] == arr[2][2] != '.':
+            return arr[2][0]
+        elif arr[0][0] == arr[1][0] == arr[2][0] != '.':
+            return arr[0][0]
+        elif arr[0][1] == arr[1][1] == arr[2][1] != '.':
+            return arr[0][1]
+        elif arr[0][2] == arr[1][2] == arr[2][2] != '.':
+            return arr[0][2]
+        elif arr[0][0] == arr[1][1] == arr[2][2] != '.':
+            return arr[0][0]
+        elif arr[0][2] == arr[1][1] == arr[2][0] != '.':
+            return arr[0][2]
         else:
-            return False
+            return '.'
     
     def random_placement(self, symbol):
         '''Replaces Random element'''
