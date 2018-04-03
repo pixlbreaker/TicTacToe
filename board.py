@@ -6,9 +6,15 @@ class Board:
     Holds functionality of placing elements and checking wins
     '''
     def __init__(self, arr=[]):
+        '''Init'''
         self.arr = arr
 
     def __repr__(self):
+        '''Represents in the board in this manner. 
+            |O|.|.|
+            |.|.|.|
+            |.|X|.|
+        which makes it readble to the user.'''
         board = ''
         for i in range(len(self.arr)):
             line = ''
@@ -18,7 +24,12 @@ class Board:
             board += line + "\n"
         return board
     
+    def get_arr(self):
+        '''Returns the boards 2D array.'''
+        return self.arr
+
     def board_is_full(self):
+        '''Checks if the board is full with pieces.'''
         checker = True
         for inner in self.arr:
             for el in inner:
@@ -32,7 +43,15 @@ class Board:
         if self.arr[row - 1][column - 1] == '.':
             self.arr[row - 1][column - 1] = symbol
         else:
-            print('Full, please choose another spot.')
+            print('Spot full, please choose another spot.')
+    
+    def remove_element(self, row, column):
+        '''Removes an existing elemet from the masterboard'''
+        
+        if self.arr[row - 1][column -1] != '.':
+            self.arr[row - 1][column - 1] = '.'
+        else:
+            print('This spot is already empty.')
     
     def check_win(self)->bool:
         '''Checks if there is a win!'''
@@ -56,6 +75,17 @@ class Board:
         else:
             return '.'
     
+    def find_empty_spots(self):
+        '''Finds all the empty spots on the 
+        board and returns a list of tuples of 
+        such spaces'''
+        lst = []
+        for i in range(len(self.arr)):
+            for j in range(len(self.arr[i])):
+                if self.arr[i][j] == ".":
+                    lst.append((i+1, j+1))
+        return lst
+
     def random_placement(self, symbol):
         '''Replaces Random element'''
         checker = True

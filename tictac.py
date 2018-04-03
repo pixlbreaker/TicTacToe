@@ -1,5 +1,6 @@
 # Problem with the Player symbol
 import board
+import testing
 
 empty = [[".", ".", "."], [".", ".", "."], [".", ".", "."]]
 symbols = ['O', 'X']
@@ -60,7 +61,7 @@ def play(b, player,):
 
         if not b.board_is_full():
             b.random_placement(compsym)
-
+        print(testing.position_values(b, b.find_empty_spots(), compsym))
         winner = b.check_win()
 
     print(b)
