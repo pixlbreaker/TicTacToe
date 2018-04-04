@@ -1,5 +1,6 @@
 # Problem with the Player symbol
 import board
+import testing
 
 empty = [[".", ".", "."], [".", ".", "."], [".", ".", "."]]
 symbols = ['O', 'X']
@@ -36,7 +37,7 @@ def play(b, player,):
         compsym = 'X'
     winner = False
     # Runs through the loop if the player has not won
-    while not winner:
+    while winner not in symbols:
 
         print(b)
         try:
@@ -48,7 +49,8 @@ def play(b, player,):
                 winner = True
                 break
             # Replaces the element
-            b.replace_element(player, int(user_input_x), int(user_input_y))
+            if not b.board_is_full():
+                b.replace_element(player, int(user_input_x), int(user_input_y))
         except ValueError:
             print('Invalid input, please retry!')
         except IndexError:
@@ -57,12 +59,13 @@ def play(b, player,):
             # Print Statement
             print("\nPlaced an " + player + " at (" + str(user_input_x) + ", " + str(user_input_y) + ")")
 
-        b.random_placement(compsym)
-
+        if not b.board_is_full():
+            b.random_placement(compsym)
+        print(testing.position_values(b, b.find_empty_spots(), compsym))
         winner = b.check_win()
 
     print(b)
-    print("Congradulations to ", winner)
+    print("Congradulations to", winner)
     print('Thank you for playing!')
 
 if __name__ == "__main__":    
