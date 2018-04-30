@@ -1,6 +1,6 @@
 # Problem with the Player symbol
 import board
-import testing
+import minmax
 
 empty = [[".", ".", "."], [".", ".", "."], [".", ".", "."]]
 symbols = ['O', 'X']
@@ -59,9 +59,12 @@ def play(b, player,):
             # Print Statement
             print("\nPlaced an " + player + " at (" + str(user_input_x) + ", " + str(user_input_y) + ")")
 
+        # if not b.board_is_full():
+        #     b.random_placement(compsym)
         if not b.board_is_full():
-            b.random_placement(compsym)
-        print(testing.position_values(b, b.find_empty_spots(), compsym))
+            pos_vales = minmax.position_values(b, b.find_empty_spots(), compsym, player)
+            best_location = minmax.choose_best_position(pos_vales)
+            b.replace_element(compsym, best_location[0], best_location[1])
         winner = b.check_win()
 
     print(b)

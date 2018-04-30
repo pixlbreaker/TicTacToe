@@ -53,7 +53,7 @@ class Board:
         else:
             print('This spot is already empty.')
     
-    def check_win(self)->bool:
+    def check_win(self):
         '''Checks if there is a win!'''
         arr = self.arr
         if arr[0][0] == arr[0][1] == arr[0][2] != '.':
