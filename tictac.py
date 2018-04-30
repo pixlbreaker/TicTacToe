@@ -37,7 +37,7 @@ def play(b, player,):
         compsym = 'X'
     winner = False
     # Runs through the loop if the player has not won
-    while winner not in symbols:
+    while winner not in symbols or b.board_is_full():
 
         print(b)
         try:
