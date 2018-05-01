@@ -51,6 +51,5 @@ def position_values(master_board, locations, comp_sym, play_sym):
 
 def choose_best_position(pos_vals):
     lst = sorted(pos_vals, key=lambda x: x[1])
-    print(lst)
     return lst[0][0]
     
