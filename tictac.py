@@ -65,6 +65,9 @@ def play(b, player,):
             pos_vales = minmax.position_values(b, b.find_empty_spots(), compsym, player)
             best_location = minmax.choose_best_position(pos_vales)
             b.replace_element(compsym, best_location[0], best_location[1])
+        print(b.board_is_full())
+        if b.board_is_full():
+            break
         winner = b.check_win()
 
     print(b)
